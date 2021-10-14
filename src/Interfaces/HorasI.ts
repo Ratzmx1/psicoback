@@ -5,4 +5,5 @@ export interface HorasI {
   nombre: string;
   descripcion: string;
   fecha: Date;
+  pagado: boolean;
 }

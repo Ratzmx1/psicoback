@@ -1,4 +1,4 @@
-export interface ClienteI {
+export interface UsuarioI {
   _id?: string;
   rut: string;
   nombre: string;
@@ -7,4 +7,5 @@ export interface ClienteI {
   nacimiento: Date;
   sexo: string;
   telefono: number;
+  tipo: string;
 }
