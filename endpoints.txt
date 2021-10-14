@@ -1,0 +1,22 @@
+CLIENTE
+
+Login
+Registro
+Solicitar hora
+Cancelar hora
+Ver horas disponibles
+Actualizar correo
+Actualizar contraseña
+Ver historial de horas
+Ver detalle de hora
+
+PSICO
+
+Login
+Autiorizar hora
+Cancelar hora
+Calendarizar horas
+Actualizar correo
+Actualizar contraseña
+Escribir detalle de hora
+Ver historial de horas
