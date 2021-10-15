@@ -13,8 +13,13 @@ export class UsuarioService implements UsuarioServicesI {
     const usuario = await Cliente.findOne({ rut });
     return usuario;
   }
-  obtenerUsuario(userId: string): Promise<UsuarioI> {
-    throw new Error("Method not implemented.");
+  async obtenerUsuario(userId: string): Promise<UsuarioI | null> {
+    try {
+      const usuario = await Cliente.findById(userId);
+      return usuario;
+    } catch (error) {
+      throw new Error(`Database error: ${error}`);
+    }
   }
 
   login(rut: string, pass: string): Promise<UsuarioI> {
@@ -67,8 +72,18 @@ export class UsuarioService implements UsuarioServicesI {
   cancelarHoras(idHora: string, idCliente: string): Promise<HorasI> {
     throw new Error("Method not implemented.");
   }
-  actualizarPass(idCliente: string, newPass: string): Promise<UsuarioI> {
-    throw new Error("Method not implemented.");
+  async actualizarPass(
+    idCliente: string,
+    newPass: string
+  ): Promise<UsuarioI | null> {
+    try {
+      const usuario = await Cliente.findByIdAndUpdate(idCliente, {
+        pass: newPass,
+      });
+      return usuario;
+    } catch (error) {
+      throw new Error(`Database error: ${error}`);
+    }
   }
   actualizarEmail(idCliente: string, newEmail: string): Promise<UsuarioI> {
     throw new Error("Method not implemented.");

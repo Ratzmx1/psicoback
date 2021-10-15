@@ -17,12 +17,15 @@ export interface UsuarioServicesI {
     idCliente: string,
     nombre: string
   ): Promise<HorasI>;
-  obtenerUsuario(userId: string): Promise<UsuarioI>;
+  obtenerUsuario(userId: string): Promise<UsuarioI | null>;
   historialHoras(idCliente: string): Promise<Array<HorasI>>;
   verHorasDisponibles(): Promise<Array<HorasI>>;
   cancelarHoras(idHora: string, idCliente: string): Promise<HorasI>;
-  actualizarPass(idCliente: string, newPass: string): Promise<UsuarioI>;
-  actualizarEmail(idCliente: string, newEmail: string): Promise<UsuarioI>;
+  actualizarPass(idCliente: string, newPass: string): Promise<UsuarioI | null>;
+  actualizarEmail(
+    idCliente: string,
+    newEmail: string
+  ): Promise<UsuarioI | null>;
   obtenerPorEmail(email: string): Promise<UsuarioI | null>;
   obtenerPorrut(rut: string): Promise<UsuarioI | null>;
 }
