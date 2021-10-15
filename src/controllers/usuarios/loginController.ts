@@ -34,5 +34,4 @@ export const login =
         .status(500)
         .json({ message: `Internal server error | ${error.message}` });
     }
-    return res.json({});
   };

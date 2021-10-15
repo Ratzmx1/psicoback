@@ -1,7 +1,7 @@
 CLIENTE
 
-Login
-Registro
+>Login 
+>Registro
 Solicitar hora
 Cancelar hora
 Ver horas disponibles
@@ -12,8 +12,7 @@ Ver detalle de hora
 
 PSICO
 
-Login
-Autiorizar hora
+Autorizar hora
 Cancelar hora
 Calendarizar horas
 Actualizar correo
