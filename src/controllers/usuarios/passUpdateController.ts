@@ -1,4 +1,4 @@
-import { Request, response, Response } from "express";
+import { Request, Response } from "express";
 import { UsuarioService } from "../../services/UsurioServices";
 import bcrypt from "bcrypt";
 
