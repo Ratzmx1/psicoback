@@ -5,7 +5,8 @@ import userRouter from "./routes/UserRoutes";
 import middleware from "./routes/middleware";
 
 const app = express();
-const mongoURL = "mongodb://localhost:27017/psico";
+const mongoURL =
+  "mongodb+srv://admin:admin@cluster0.y28gj.mongodb.net/psico?retryWrites=true&w=majority";
 
 app.use(express.json());
 
@@ -18,4 +19,5 @@ app.get("/", middleware, (req, res) => {
 app.listen(3000, async () => {
   console.log("The application is listening on port 3000!");
   await mongo.connect(mongoURL);
+  console.log("Db Conectada");
 });
