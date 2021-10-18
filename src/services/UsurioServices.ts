@@ -85,7 +85,17 @@ export class UsuarioService implements UsuarioServicesI {
       throw new Error(`Database error: ${error}`);
     }
   }
-  actualizarEmail(idCliente: string, newEmail: string): Promise<UsuarioI> {
-    throw new Error("Method not implemented.");
+  async actualizarEmail(
+    idCliente: string,
+    newEmail: string
+  ): Promise<UsuarioI | null> {
+    try {
+      const usuario = await Cliente.findByIdAndUpdate(idCliente, {
+        correo: newEmail,
+      });
+      return usuario;
+    } catch (error) {
+      throw new Error(`Database error: ${error}`);
+    }
   }
 }

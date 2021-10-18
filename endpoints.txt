@@ -5,8 +5,8 @@ CLIENTE
 Solicitar hora
 Cancelar hora
 Ver horas disponibles
-Actualizar correo
-Actualizar contraseña
+>Actualizar correo
+>Actualizar contraseña
 Ver historial de horas
 Ver detalle de hora
 
@@ -15,7 +15,7 @@ PSICO
 Autorizar hora
 Cancelar hora
 Calendarizar horas
-Actualizar correo
-Actualizar contraseña
+>Actualizar correo
+>Actualizar contraseña
 Escribir detalle de hora
 Ver historial de horas

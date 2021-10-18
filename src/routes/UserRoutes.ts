@@ -15,6 +15,6 @@ userRouter.post("/", register(userService));
 
 userRouter.post("/login", login(userService));
 
-userRouter.patch("/password", middleware, passUpdate(userService));
+userRouter.patch("/password", middleware(), passUpdate(userService));
 
 export default userRouter;
