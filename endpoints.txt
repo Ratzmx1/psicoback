@@ -2,7 +2,7 @@ CLIENTE
 
 >Login 
 >Registro
-Solicitar hora
+>Solicitar hora
 Cancelar hora
 >Ver horas disponibles
 >Actualizar correo
