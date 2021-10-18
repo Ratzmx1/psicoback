@@ -20,7 +20,17 @@ export class HoraService implements HoraServicesI {
     throw new Error("Method not implemented.");
   }
   async obtenerDisponibles(): Promise<HorasI[]> {
-    throw new Error("Method not implemented.");
+    try {
+      const horas = await Horas.find({
+        disponible: true,
+        fecha: { $gt: new Date() },
+      })
+        .sort("fecha")
+        .select("_id fecha");
+      return horas;
+    } catch (error: any) {
+      throw new Error(`Database error: ${error}`);
+    }
   }
   async obtenerHistorial(): Promise<HorasI[]> {
     throw new Error("Method not implemented.");
@@ -42,6 +52,22 @@ export class HoraService implements HoraServicesI {
     idCliente: string,
     nombre: string
   ): Promise<HorasI | null> {
-    throw new Error("Method not implemented.");
+    try {
+      const hora = await Horas.findOneAndUpdate(
+        { _id: id },
+        {
+          idCliente,
+          nombre,
+          disponible: false,
+          pagado: false,
+          confirmada: false,
+        }
+      );
+      return hora;
+    } catch (error: any) {
+      console.log(error.code);
+      if (error.code == 11000) return null;
+      throw new Error(`Database error: ${error}`);
+    }
   }
 }

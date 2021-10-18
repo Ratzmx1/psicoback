@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { UsuarioService } from "../../services/UsurioServices";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { sendError } from "../../helpers/sendError";
 
 export const login =
   (userService: UsuarioService) =>
@@ -10,18 +11,18 @@ export const login =
       const { rut, pass } = req.body;
 
       if (!rut || !pass) {
-        return res.status(400).json({ message: "Falta informacion" });
+        return sendError(400, "Falta informacion", res);
       }
 
       const usuario = await userService.obtenerPorrut(rut);
       if (!usuario) {
-        return res.status(404).json({ message: "Usuario no encontrado" });
+        return sendError(404, "Usuario no encontrado", res);
       }
 
       const passCorrecta = bcrypt.compareSync(pass, usuario.pass);
 
       if (!passCorrecta) {
-        return res.status(401).json({ message: "Contraseña incorrecta" });
+        return sendError(401, "Contraseña incorrecta", res);
       }
 
       const token = jwt.sign({ _id: usuario?._id }, "EstaEsLaKeyxd", {
@@ -30,8 +31,6 @@ export const login =
 
       return res.json({ usuario, token });
     } catch (error: any) {
-      return res
-        .status(500)
-        .json({ message: `Internal server error | ${error.message}` });
+      return sendError(500, `Internal server error | ${error.message}`, res);
     }
   };

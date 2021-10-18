@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { sendError } from "../../helpers/sendError";
 import { UsuarioService } from "../../services/UsurioServices";
 
 export const emailUpdate =
@@ -8,10 +9,10 @@ export const emailUpdate =
       const { newEmail } = req.body;
       const usuario = await userService.obtenerUsuario(res.locals._id);
 
-      if (!usuario) return res.status(404).json({ message: "No existe" });
+      if (!usuario) return sendError(404, "No existe", res);
 
       if (!newEmail) {
-        return res.status(401).json({ message: "Debe ingresar un email" });
+        return sendError(401, "Debe ingresar un email", res);
       }
 
       const updatedUser = await userService.actualizarEmail(
@@ -20,8 +21,6 @@ export const emailUpdate =
       );
       return res.json({ usuario: updatedUser });
     } catch (error: any) {
-      return res
-        .status(500)
-        .json({ message: `Internal server error | ${error.message}` });
+      return sendError(500, `Internal server error | ${error.message}`, res);
     }
   };

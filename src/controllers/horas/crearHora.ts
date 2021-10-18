@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { sendError } from "../../helpers/sendError";
 import { HoraService } from "../../services/Horaservice";
 
 export const crearHora =
@@ -7,16 +8,17 @@ export const crearHora =
     try {
       const { fecha } = req.body;
       if (!fecha) {
-        return res.status(400).json({ message: "Fecha no ingresada" });
+        return sendError(400, "Fecha no ingresada", res);
       }
+
       const formattedFecha = new Date(fecha);
       console.log(formattedFecha.toUTCString());
       const hora = await horaService.crearHora(formattedFecha);
-      if (!hora) return res.status(400).json({ message: "Hora ya existe" });
+
+      if (!hora) return sendError(400, "Hora ya existe", res);
+
       return res.json({ hora });
     } catch (error: any) {
-      return res
-        .status(500)
-        .json({ message: `Internal server error | ${error.message}` });
+      return sendError(500, `Internal server error | ${error.message}`, res);
     }
   };
