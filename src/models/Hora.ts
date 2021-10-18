@@ -6,9 +6,9 @@ const schema = new Schema<HorasI>({
   idCliente: { type: String, required: false },
   descripcion: { type: String, required: false },
   nombre: { type: String, required: false },
-  fecha: { type: Date, required: true },
+  fecha: { type: Date, required: true, unique: true },
   pagado: { type: Boolean, default: false },
-  confirmada: { type: Boolean },
+  confirmada: { type: Boolean, required: false },
 });
 
 export const Horas = model<HorasI>("Horas", schema);

@@ -1,7 +1,7 @@
 import { HorasI } from "./HorasI";
 
 export interface HoraServicesI {
-  crearHora(): Promise<HorasI>;
+  crearHora(fecha: Date): Promise<HorasI | null>;
   eliminarHora(id: string): Promise<boolean>;
   confirmarHora(id: string): Promise<HorasI | null>;
   solicitarhora(
