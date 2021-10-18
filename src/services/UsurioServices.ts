@@ -22,10 +22,6 @@ export class UsuarioService implements UsuarioServicesI {
     }
   }
 
-  login(rut: string, pass: string): Promise<UsuarioI> {
-    throw new Error("Method not implemented.");
-  }
-
   async registro(
     rut: string,
     nombre: string,
@@ -54,24 +50,6 @@ export class UsuarioService implements UsuarioServicesI {
     }
   }
 
-  solicitarHora(
-    idHora: string,
-    idCliente: string,
-    nombre: string
-  ): Promise<HorasI> {
-    throw new Error("Method not implemented.");
-  }
-
-  historialHoras(idCliente: string): Promise<HorasI[]> {
-    throw new Error("Method not implemented.");
-  }
-
-  verHorasDisponibles(): Promise<HorasI[]> {
-    throw new Error("Method not implemented.");
-  }
-  cancelarHoras(idHora: string, idCliente: string): Promise<HorasI> {
-    throw new Error("Method not implemented.");
-  }
   async actualizarPass(
     idCliente: string,
     newPass: string

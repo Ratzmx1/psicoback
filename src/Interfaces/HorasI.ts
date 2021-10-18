@@ -6,4 +6,5 @@ export interface HorasI {
   descripcion: string;
   fecha: Date;
   pagado: boolean;
+  confirmada: boolean;
 }
