@@ -7,6 +7,7 @@ import { UsuarioService } from "../services/UsurioServices";
 import { crearHora } from "../controllers/horas/crearHora";
 import { verDisponibles } from "../controllers/horas/verDisponibles";
 import { solicitarHora } from "../controllers/horas/solicitarHora";
+import { cancelarHora } from "../controllers/horas/cancelarHora";
 
 const HorasRouter = Router();
 
@@ -20,4 +21,5 @@ HorasRouter.post(
   middleware(),
   solicitarHora(horaService, userService)
 );
+HorasRouter.patch("/cancelar", middleware(), cancelarHora(horaService));
 export default HorasRouter;

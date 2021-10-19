@@ -55,9 +55,10 @@ export class UsuarioService implements UsuarioServicesI {
     newPass: string
   ): Promise<UsuarioI | null> {
     try {
-      const usuario = await Cliente.findByIdAndUpdate(idCliente, {
+      await Cliente.findByIdAndUpdate(idCliente, {
         pass: newPass,
       });
+      const usuario = await Cliente.findById(idCliente);
       return usuario;
     } catch (error) {
       throw new Error(`Database error: ${error}`);
@@ -68,9 +69,10 @@ export class UsuarioService implements UsuarioServicesI {
     newEmail: string
   ): Promise<UsuarioI | null> {
     try {
-      const usuario = await Cliente.findByIdAndUpdate(idCliente, {
+      await Cliente.findByIdAndUpdate(idCliente, {
         correo: newEmail,
       });
+      const usuario = await Cliente.findById(idCliente);
       return usuario;
     } catch (error) {
       throw new Error(`Database error: ${error}`);

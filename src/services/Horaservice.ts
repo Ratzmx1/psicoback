@@ -39,13 +39,32 @@ export class HoraService implements HoraServicesI {
     throw new Error("Method not implemented.");
   }
   async cancelarHora(id: string): Promise<HorasI | null> {
-    throw new Error("Method not implemented.");
+    try {
+      await Horas.findByIdAndUpdate(id, {
+        disponible: true,
+        idCliente: "",
+        descripcion: "",
+        nombre: "",
+      });
+      const cancelada = await Horas.findById(id);
+      return cancelada;
+    } catch (error: any) {
+      throw new Error(`Database error: ${error}`);
+    }
   }
   async obtenerHistorialPorUsuario(idUsuario: string): Promise<HorasI[]> {
     throw new Error("Method not implemented.");
   }
   async obtenerHora(id: string): Promise<HorasI | null> {
-    throw new Error("Method not implemented.");
+    try {
+      const hora = await Horas.findById(id);
+      if (!hora) {
+        return null;
+      }
+      return hora;
+    } catch (error: any) {
+      throw new Error(`Database error: ${error}`);
+    }
   }
   async solicitarhora(
     id: string,
@@ -53,7 +72,7 @@ export class HoraService implements HoraServicesI {
     nombre: string
   ): Promise<HorasI | null> {
     try {
-      const hora = await Horas.findOneAndUpdate(
+      await Horas.findOneAndUpdate(
         { _id: id },
         {
           idCliente,
@@ -63,6 +82,7 @@ export class HoraService implements HoraServicesI {
           confirmada: false,
         }
       );
+      const hora = await Horas.findById(id);
       return hora;
     } catch (error: any) {
       console.log(error.code);

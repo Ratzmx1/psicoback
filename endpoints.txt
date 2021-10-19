@@ -3,7 +3,7 @@ CLIENTE
 >Login 
 >Registro
 >Solicitar hora
-Cancelar hora
+>Cancelar hora
 >Ver horas disponibles
 >Actualizar correo
 >Actualizar contraseña
@@ -12,8 +12,7 @@ Ver detalle de hora
 
 PSICO
 
-Autorizar hora
-Cancelar hora
+Eliminar hora
 >Calendarizar horas
 >Actualizar correo
 >Actualizar contraseña
