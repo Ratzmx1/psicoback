@@ -12,6 +12,8 @@ import { verHistorial } from "../controllers/horas/verHistorial";
 import { verHistorialId } from "../controllers/horas/verHistorialId";
 import { verHistoriales } from "../controllers/horas/verHistoriales";
 import { verHora } from "../controllers/horas/verHora";
+import { eliminarHora } from "../controllers/horas/eliminarHora";
+import { agregarDetalle } from "../controllers/horas/agregarDetalle";
 
 const HorasRouter = Router();
 
@@ -47,5 +49,15 @@ HorasRouter.get(
   "/hora/:idHora",
   middleware(),
   verHora(horaService, userService)
+);
+HorasRouter.delete(
+  "/",
+  middlewarePsico(userService),
+  eliminarHora(horaService)
+);
+HorasRouter.patch(
+  "/descripcion",
+  middlewarePsico(userService),
+  agregarDetalle(horaService)
 );
 export default HorasRouter;

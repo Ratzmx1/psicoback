@@ -9,13 +9,24 @@ export class UsuarioService implements UsuarioServicesI {
     const usuario = await Cliente.findOne({ correo: email });
     return usuario;
   }
+
   async obtenerPorrut(rut: string): Promise<UsuarioI | null> {
     const usuario = await Cliente.findOne({ rut });
     return usuario;
   }
+
   async obtenerUsuario(userId: string): Promise<UsuarioI | null> {
     try {
       const usuario = await Cliente.findById(userId);
+      return usuario;
+    } catch (error) {
+      throw new Error(`Database error: ${error}`);
+    }
+  }
+
+  async obtenerTodos(): Promise<UsuarioI[]> {
+    try {
+      const usuario = await Cliente.find({ tipo: "CLIENTE" });
       return usuario;
     } catch (error) {
       throw new Error(`Database error: ${error}`);
@@ -64,6 +75,7 @@ export class UsuarioService implements UsuarioServicesI {
       throw new Error(`Database error: ${error}`);
     }
   }
+
   async actualizarEmail(
     idCliente: string,
     newEmail: string

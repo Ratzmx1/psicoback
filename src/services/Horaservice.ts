@@ -14,8 +14,13 @@ export class HoraService implements HoraServicesI {
     }
   }
 
-  async eliminarHora(id: string): Promise<boolean> {
-    throw new Error("Method not implemented.");
+  async eliminarHora(id: string): Promise<HorasI | null> {
+    try {
+      const hora = await Horas.findByIdAndDelete(id);
+      return hora;
+    } catch (error: any) {
+      throw new Error(`Database error: ${error}`);
+    }
   }
 
   async obtenerDisponibles(): Promise<HorasI[]> {
@@ -47,7 +52,15 @@ export class HoraService implements HoraServicesI {
   }
 
   async agregarDetalle(id: string, detalle: string): Promise<HorasI | null> {
-    throw new Error("Method not implemented.");
+    try {
+      await Horas.findByIdAndUpdate(id, {
+        descripcion: detalle,
+      });
+      const cambiada = await Horas.findById(id);
+      return cambiada;
+    } catch (error: any) {
+      throw new Error(`Database error: ${error}`);
+    }
   }
 
   async cancelarHora(id: string): Promise<HorasI | null> {

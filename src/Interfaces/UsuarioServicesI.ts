@@ -20,4 +20,5 @@ export interface UsuarioServicesI {
   ): Promise<UsuarioI | null>;
   obtenerPorEmail(email: string): Promise<UsuarioI | null>;
   obtenerPorrut(rut: string): Promise<UsuarioI | null>;
+  obtenerTodos(): Promise<UsuarioI[]>;
 }

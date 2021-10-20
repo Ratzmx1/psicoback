@@ -1,4 +1,4 @@
-CLIENTE
+>CLIENTE
 
 >Login 
 >Registro
@@ -12,12 +12,12 @@ CLIENTE
 
 PSICO
 
-Eliminar hora
+>Eliminar hora
 >Calendarizar horas
 >Actualizar correo
 >Actualizar contraseña
-Escribir detalle de hora
+>Escribir detalle de hora
 >Ver historial de horas
 >Ver historial de horas de cliente especifico
 >Ver detalle de horas de cliente especifico
-Ver Clientes
+>Ver Clientes

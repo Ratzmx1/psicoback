@@ -2,7 +2,7 @@ import { HorasI } from "./HorasI";
 
 export interface HoraServicesI {
   crearHora(fecha: Date): Promise<HorasI | null>;
-  eliminarHora(id: string): Promise<boolean>;
+  eliminarHora(id: string): Promise<HorasI | null>;
   solicitarhora(
     id: string,
     idCliente: string,
