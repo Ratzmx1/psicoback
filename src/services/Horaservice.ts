@@ -13,12 +13,11 @@ export class HoraService implements HoraServicesI {
       throw new Error(`Database error: ${error}`);
     }
   }
+
   async eliminarHora(id: string): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
-  async confirmarHora(id: string): Promise<HorasI | null> {
-    throw new Error("Method not implemented.");
-  }
+
   async obtenerDisponibles(): Promise<HorasI[]> {
     try {
       const horas = await Horas.find({
@@ -32,12 +31,25 @@ export class HoraService implements HoraServicesI {
       throw new Error(`Database error: ${error}`);
     }
   }
-  async obtenerHistorial(): Promise<HorasI[]> {
-    throw new Error("Method not implemented.");
+
+  async obtenerHistoriales(): Promise<HorasI[]> {
+    try {
+      const horas = await Horas.find({
+        disponible: false,
+        fecha: { $lt: new Date() },
+      })
+        .sort("fecha")
+        .select("_id fecha pagado");
+      return horas;
+    } catch (error: any) {
+      throw new Error(`Database error: ${error}`);
+    }
   }
+
   async agregarDetalle(id: string, detalle: string): Promise<HorasI | null> {
     throw new Error("Method not implemented.");
   }
+
   async cancelarHora(id: string): Promise<HorasI | null> {
     try {
       await Horas.findByIdAndUpdate(id, {
@@ -52,9 +64,21 @@ export class HoraService implements HoraServicesI {
       throw new Error(`Database error: ${error}`);
     }
   }
-  async obtenerHistorialPorUsuario(idUsuario: string): Promise<HorasI[]> {
-    throw new Error("Method not implemented.");
+
+  async obtenerHistorialPorUsuario(id: string): Promise<HorasI[]> {
+    try {
+      const horas = await Horas.find({
+        fecha: { $lt: new Date() },
+        idCliente: id,
+      })
+        .sort("fecha")
+        .select("_id fecha pagado");
+      return horas;
+    } catch (error: any) {
+      throw new Error(`Database error: ${error}`);
+    }
   }
+
   async obtenerHora(id: string): Promise<HorasI | null> {
     try {
       const hora = await Horas.findById(id);
@@ -66,6 +90,7 @@ export class HoraService implements HoraServicesI {
       throw new Error(`Database error: ${error}`);
     }
   }
+
   async solicitarhora(
     id: string,
     idCliente: string,

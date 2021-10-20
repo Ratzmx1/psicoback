@@ -7,8 +7,8 @@ CLIENTE
 >Ver horas disponibles
 >Actualizar correo
 >Actualizar contraseña
-Ver historial de horas
-Ver detalle de hora
+>Ver historial de horas propias
+>Ver detalle de horas propias
 
 PSICO
 
@@ -17,4 +17,7 @@ Eliminar hora
 >Actualizar correo
 >Actualizar contraseña
 Escribir detalle de hora
-Ver historial de horas
+>Ver historial de horas
+>Ver historial de horas de cliente especifico
+>Ver detalle de horas de cliente especifico
+Ver Clientes
