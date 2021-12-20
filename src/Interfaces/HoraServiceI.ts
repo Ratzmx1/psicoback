@@ -10,6 +10,7 @@ export interface HoraServicesI {
   ): Promise<HorasI | null>;
   obtenerDisponibles(): Promise<Array<HorasI>>;
   obtenerHistoriales(): Promise<Array<HorasI>>;
+  obtenerHorasTomadas(): Promise<Array<HorasI>>;
   agregarDetalle(id: string, detalle: string): Promise<HorasI | null>;
   cancelarHora(id: string): Promise<HorasI | null>;
   obtenerHistorialPorUsuario(idUsuario: string): Promise<Array<HorasI>>;

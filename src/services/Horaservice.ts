@@ -44,7 +44,19 @@ export class HoraService implements HoraServicesI {
         fecha: { $lt: new Date() },
       })
         .sort("fecha")
-        .select("_id fecha pagado");
+      return horas;
+    } catch (error: any) {
+      throw new Error(`Database error: ${error}`);
+    }
+  }
+
+  async obtenerHorasTomadas(): Promise<HorasI[]> {
+    try {
+      const horas = await Horas.find({
+        disponible: false,
+        fecha: { $gt: new Date() },
+      })
+        .sort("fecha")
       return horas;
     } catch (error: any) {
       throw new Error(`Database error: ${error}`);

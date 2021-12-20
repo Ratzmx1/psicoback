@@ -14,6 +14,8 @@ import { verHistoriales } from "../controllers/horas/verHistoriales";
 import { verHora } from "../controllers/horas/verHora";
 import { eliminarHora } from "../controllers/horas/eliminarHora";
 import { agregarDetalle } from "../controllers/horas/agregarDetalle";
+import { Horas } from "../models/Hora";
+import { verTomadas } from "../controllers/horas/verTomadas";
 
 const HorasRouter = Router();
 
@@ -39,7 +41,11 @@ HorasRouter.get(
   middlewarePsico(userService),
   verHistoriales(horaService)
 );
-
+HorasRouter.get(
+  "/tomadas",
+  middlewarePsico(userService),
+  verTomadas(horaService)
+);
 HorasRouter.get(
   "/historial/:id",
   middlewarePsico(userService),

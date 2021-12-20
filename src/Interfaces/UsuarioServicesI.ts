@@ -13,6 +13,7 @@ export interface UsuarioServicesI {
   ): Promise<UsuarioI | null>;
 
   obtenerUsuario(userId: string): Promise<UsuarioI | null>;
+  obtenerDatos(userId: string): Promise<UsuarioI | null>;
   actualizarPass(idCliente: string, newPass: string): Promise<UsuarioI | null>;
   actualizarEmail(
     idCliente: string,

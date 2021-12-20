@@ -24,9 +24,20 @@ export class UsuarioService implements UsuarioServicesI {
     }
   }
 
+  async obtenerDatos(userId: string): Promise<UsuarioI | null> {
+    try {
+      const usuario = await Cliente.findById(userId).select("nombre rut correo nacimiento");
+      return usuario;
+    } catch (error) {
+      throw new Error(`Database error: ${error}`);
+    }
+  }
+
   async obtenerTodos(): Promise<UsuarioI[]> {
     try {
-      const usuario = await Cliente.find({ tipo: "CLIENTE" });
+      const usuario = await Cliente.find({ tipo: "CLIENTE" })
+      .sort("nombre")
+      .select("_id rut correo nacimiento nombre sexo telefono ");
       return usuario;
     } catch (error) {
       throw new Error(`Database error: ${error}`);
