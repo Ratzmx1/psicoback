@@ -19,8 +19,10 @@ export const emailUpdate =
         res.locals._id,
         newEmail
       );
+      console.log(updatedUser);
       return res.json({ usuario: updatedUser });
     } catch (error: any) {
+      console.log(error.message);
       return sendError(500, `Internal server error | ${error.message}`, res);
     }
   };

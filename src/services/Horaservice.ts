@@ -93,10 +93,9 @@ export class HoraService implements HoraServicesI {
   async obtenerHistorialPorUsuario(id: string): Promise<HorasI[]> {
     try {
       const horas = await Horas.find({
-        fecha: { $lt: new Date() },
         idCliente: id,
       })
-        .sort("fecha")
+        .sort({ fecha: -1 })
         .select("_id fecha pagado");
       return horas;
     } catch (error: any) {
