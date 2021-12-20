@@ -6,6 +6,7 @@ import { passUpdate } from "../controllers/usuarios/passUpdateController";
 import middleware from "./middleware";
 import middlewarePsico from "./middlewarePsico";
 import { verClientes } from "../controllers/usuarios/verClientes";
+import { emailUpdate } from "../controllers/usuarios/emailUpdateController";
 
 const userRouter = Router();
 
@@ -22,5 +23,9 @@ userRouter.get(
   middlewarePsico(userService),
   verClientes(userService)
 );
+
+userRouter.patch("/email", middleware(), emailUpdate(userService));
+
+userRouter.patch("/pass", middleware(), passUpdate(userService));
 
 export default userRouter;
