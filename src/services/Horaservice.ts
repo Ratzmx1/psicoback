@@ -37,6 +37,18 @@ export class HoraService implements HoraServicesI {
     }
   }
 
+  async obtenerTodas(): Promise<HorasI[]> {
+    try {
+      const horas = await Horas.find({
+        fecha: { $gt: new Date() },
+      })
+        .sort("fecha")
+      return horas;
+    } catch (error: any) {
+      throw new Error(`Database error: ${error}`);
+    }
+  }
+
   async obtenerHistoriales(): Promise<HorasI[]> {
     try {
       const horas = await Horas.find({
@@ -96,7 +108,7 @@ export class HoraService implements HoraServicesI {
         idCliente: id,
       })
         .sort({ fecha: -1 })
-        .select("_id fecha pagado");
+        .select("_id fecha pagado descripcion ");
       return horas;
     } catch (error: any) {
       throw new Error(`Database error: ${error}`);

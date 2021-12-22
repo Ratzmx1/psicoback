@@ -16,6 +16,8 @@ import { eliminarHora } from "../controllers/horas/eliminarHora";
 import { agregarDetalle } from "../controllers/horas/agregarDetalle";
 import { Horas } from "../models/Hora";
 import { verTomadas } from "../controllers/horas/verTomadas";
+import { verTodas } from "../controllers/horas/verTodas";
+
 
 const HorasRouter = Router();
 
@@ -25,6 +27,8 @@ const userService = new UsuarioService();
 HorasRouter.post("/", middlewarePsico(userService), crearHora(horaService));
 
 HorasRouter.get("/disponibles", middleware(), verDisponibles(horaService));
+
+HorasRouter.get("/todas", middleware(), verTodas(horaService));
 
 HorasRouter.post(
   "/solicitar",
